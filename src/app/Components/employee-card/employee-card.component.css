@@ -1,0 +1,12 @@
+.card {
+    border: 1px solid #ccc;
+  }
+  
+  .card-header {
+    background-color: #f8f9fa;
+  }
+  
+  .card-title {
+    margin: 0;
+  }
+  

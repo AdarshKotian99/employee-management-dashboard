@@ -1,0 +1,23 @@
+.filter-container {
+    margin-bottom: 20px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  .table-responsive {
+    width: 100%;  
+     overflow-x: auto;
+  }
+
+  table {
+    width: 100%; 
+  }
+
+  .mat-table {
+    min-width: 600px;   
+  }
+ 

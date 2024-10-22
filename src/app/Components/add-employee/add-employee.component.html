@@ -1,0 +1,58 @@
+<h2 class="text-center mb-4">Add Employee</h2>
+<div class="container d-flex justify-content-end mb-3">
+  <button mat-raised-button color="primary" routerLink="/employees">
+    View Dashboard
+  </button>
+</div>
+<div class="container form-container">
+  <form (ngSubmit)="addEmployee(employeeForm)" #employeeForm="ngForm" class="row g-3">
+    <div class="col-12 col-md-6">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="employee.name" name="name" required #nameInput="ngModel"/>
+        <mat-error *ngIf="nameInput.invalid && nameInput.touched">
+          Name is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <div class="col-12 col-md-6">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="employee.email" name="email" required email #emailInput="ngModel"/>
+        <mat-error *ngIf="emailInput.invalid && emailInput.touched">
+          Email address is required and must be valid.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <div class="col-12 col-md-6">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Department</mat-label>
+        <mat-select [(ngModel)]="employee.department" name="department" required #deptInput="ngModel">
+          <mat-option value="HR">HR</mat-option>
+          <mat-option value="Engineering">Engineering</mat-option>
+        </mat-select>
+        <mat-error *ngIf="deptInput.invalid && deptInput.touched">
+          Department is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Joining Date</mat-label>
+        <input matInput [(ngModel)]="employee.joiningDate" name="joiningDate" type="date" required #dateInput="ngModel"/>
+        <mat-error *ngIf="dateInput.invalid && dateInput.touched">
+          Joining Date is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    
+    <div class="col-12">
+      <button mat-raised-button color="primary" type="submit" class="w-100" [disabled]="employeeForm.invalid">Add Employee</button>
+    </div>
+  </form>
+</div>
+
+  

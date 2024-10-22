@@ -1,0 +1,64 @@
+<h2 class="text-center mb-4">Employee Dashboard</h2>
+<div class="container d-flex justify-content-end mb-3">
+  <button mat-raised-button color="primary" routerLink="/add">
+    Add Employee
+  </button>
+</div>
+<div class="filter-container container">
+  <mat-form-field appearance="fill">
+    <mat-label>Filter by Department</mat-label>
+    <mat-select [(ngModel)]="selectedDepartment">
+      <mat-option value="All">All</mat-option>
+      <mat-option value="HR">HR</mat-option>
+      <mat-option value="Engineering">Engineering</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="table-responsive container">
+
+<table mat-table [dataSource]="dataSource.filteredData | departmentFilter: selectedDepartment" class="mat-elevation-z8 w-100 table-container" matSort>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortData('name')">Name</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.name }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortData('email')">Email</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.email }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="department">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortData('department')">Department</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.department }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="joiningDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortData('joiningDate')">Joining Date</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.joiningDate }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let employee">
+       <button mat-button color="warn" (click)="deleteEmployee(employee.id)">Delete</button> 
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"> 
+      <ng-container *ngFor="let employee of dataSource.filteredData | departmentFilter: selectedDepartment">
+        <div class="col">
+          <app-employee-card [employee]="employee"></app-employee-card>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+
+    
+  
